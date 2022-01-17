@@ -13,6 +13,7 @@ public class LoginPage extends PageObject {
     public void inputusername (String username){
         FieldUsername.sendKeys(username);
     }
+    //validate element should be displayed
     public void verifyFieldUsername(){
         FieldUsername.shouldBePresent();
     }
@@ -23,6 +24,7 @@ public class LoginPage extends PageObject {
     public void inputpassword (String password){
         FieldPassword.sendKeys(password);
     }
+    //validate element should be displayed
     public void verifyFieldPassword(){
         FieldPassword.shouldBePresent();
     }
@@ -33,15 +35,19 @@ public class LoginPage extends PageObject {
     public void clickBtnLogin(){
         BtnLogin.click();
     }
+    //validate element should be displayed
     public void verifyButtonLogin(){
         BtnLogin.shouldBeEnabled();
     }
 
     @FindBy(xpath = "//a[normalize-space()='Forgot your password?']")
     WebElementFacade linkForgotPassword;
+    //validate element should be displayed
     public void verifyLinkForgotPassword(){
         linkForgotPassword.shouldBePresent();
     }
+
+    //-----ASSERTIONS------//
 
     //Validate in Dashboard
     @FindBy(id = "welcome")
