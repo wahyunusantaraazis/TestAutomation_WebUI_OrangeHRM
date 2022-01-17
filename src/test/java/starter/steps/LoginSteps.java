@@ -42,18 +42,33 @@ public class LoginSteps extends BaseTest {
         loginpage.validateDashboardName();
     }
 
-    @Then("I am accept error message invalid credentials")
-    public void iAmAcceptErrorMessageInvalidCredentials() {
-        loginpage.validateInvalidCredentials();
+    @Then("I am accept error message {string}")
+    public void iAmAcceptErrorMessage(String message) {
+        loginpage.validateErrorMessage(message);
     }
 
-    @Then("I am accept error message username cannot be empty")
-    public void iAmAcceptErrorMessageUsernameCannotBeEmpty() {
-        loginpage.validateUsernameEmpty();
+    @When("Should display the following fields and button links in the window")
+    public void shouldDisplayTheFollowingFieldsAndButtonLinksInTheWindow() {
     }
 
-    @Then("I am accept error message password cannot be empty")
-    public void iAmAcceptErrorMessagePasswordCannotBeEmpty() {
-        loginpage.validatePasswordEmpty();
+    @Then("Verify username field is visible")
+    public void verifyUsernameFieldIsVisible() {
+        loginpage.verifyFieldUsername();
     }
+
+    @And("Verify password field is visible")
+    public void verifyPasswordFieldIsVisible() {
+        loginpage.verifyFieldPassword();
+    }
+
+    @And("Verify login button is enable")
+    public void verifyLoginButtonIsEnable() {
+        loginpage.verifyButtonLogin();
+    }
+
+    @And("Verify Forgot your password? link is visible")
+    public void verifyForgotYourPasswordLinkIsVisible() {
+        loginpage.verifyLinkForgotPassword();
+    }
+
 }

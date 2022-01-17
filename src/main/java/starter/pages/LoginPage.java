@@ -1,6 +1,7 @@
 package starter.pages;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebElement;
 import org.junit.Assert;
 
@@ -8,23 +9,38 @@ public class LoginPage extends PageObject {
 
     //Input Field Username
     @FindBy(id = "txtUsername")
-    WebElement FieldUsername;
+    WebElementFacade FieldUsername;
     public void inputusername (String username){
         FieldUsername.sendKeys(username);
+    }
+    public void verifyFieldUsername(){
+        FieldUsername.shouldBePresent();
     }
 
     //Input Field Password
     @FindBy(id = "txtPassword")
-    WebElement FieldPassword;
+    WebElementFacade FieldPassword;
     public void inputpassword (String password){
         FieldPassword.sendKeys(password);
+    }
+    public void verifyFieldPassword(){
+        FieldPassword.shouldBePresent();
     }
 
     //Click button login
     @FindBy(id="btnLogin")
-    WebElement BtnLogin;
+    WebElementFacade BtnLogin;
     public void clickBtnLogin(){
         BtnLogin.click();
+    }
+    public void verifyButtonLogin(){
+        BtnLogin.shouldBeEnabled();
+    }
+
+    @FindBy(xpath = "//a[normalize-space()='Forgot your password?']")
+    WebElementFacade linkForgotPassword;
+    public void verifyLinkForgotPassword(){
+        linkForgotPassword.shouldBePresent();
     }
 
     //Validate in Dashboard
@@ -32,22 +48,13 @@ public class LoginPage extends PageObject {
     WebElement validateDashboard;
     public void validateDashboardName(){
         Assert.assertEquals(true,validateDashboard.isDisplayed());
-        //Assert.assertEquals("Welcome Ali",validateDashboard.getText());
     }
 
     //validate invalid credentials
     @FindBy(id = "spanMessage")
-    WebElement alertmessageLoginFailed;
-    public void validateInvalidCredentials(){
-        Assert.assertEquals("Invalid credentials",alertmessageLoginFailed.getText());
-    }
-    //validasi alert message username empty
-    public void validateUsernameEmpty(){
-        Assert.assertEquals("Username cannot be empty",alertmessageLoginFailed.getText());
-    }
-    //validasi alert message password empty
-    public void validatePasswordEmpty(){
-        Assert.assertEquals("Password cannot be empty",alertmessageLoginFailed.getText());
+    WebElement alertMessageLoginFailed;
+    public void validateErrorMessage(String message){
+        Assert.assertEquals(message,alertMessageLoginFailed.getText());
     }
 
 }
